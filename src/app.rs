@@ -13,33 +13,17 @@ pub fn create_app() -> App {
 
 // Add the paddle to our world
 fn setup_paddle(mut commands: Commands) {
-    commands.spawn((
-        SpriteBundle {
-            transform: Transform {
-                translation: Vec3::new(0.0, 0.0, 0.0),
-                scale: Vec3::new(100.0, 20.0, 1.0),
-                ..default()
-            },
-            sprite: Sprite {
-                color: Color::ORANGE,
-                ..default()
-            },
-            ..default()
-        },
-        Paddle,
-    ));
+    commands.spawn((SpriteBundle { ..default() }, Paddle));
 }
 
 #[cfg(test)]
 fn count_n_paddles(app: &App) -> usize {
     let mut n = 0;
-    println!("Number of components: {}", app.world.components().len());
     for c in app.world.components().iter() {
         // The complete name will be '[crate_name]::Paddle'
-        if c.name().contains("::Paddle") {
+        if c.name().contains("Paddle") {
             n += 1;
         }
-        println!("Name: {}", c.name());
     }
     return n;
 }
