@@ -7,7 +7,7 @@ pub fn create_app() -> App {
     let mut app = App::new();
     app.add_systems(Startup, add_player);
     app.update();
-    return app;
+    app
 }
 
 fn add_player(mut commands: Commands) {
@@ -23,7 +23,7 @@ fn count_n_players(app: &App) -> usize {
             n += 1;
         }
     }
-    return n;
+    n
 }
 
 #[cfg(test)]
