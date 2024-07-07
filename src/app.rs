@@ -17,7 +17,7 @@ fn add_player(mut commands: Commands) {
 #[cfg(test)]
 fn count_n_players(app: &App) -> usize {
     let mut n = 0;
-    for c in app.world.components().iter() {
+    for c in app.world().components().iter() {
         // The complete name will be '[crate_name]::Player'
         if c.name().contains("Player") {
             n += 1;
