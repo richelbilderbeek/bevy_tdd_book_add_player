@@ -15,15 +15,9 @@ fn add_player(mut commands: Commands) {
 }
 
 #[cfg(test)]
-fn count_n_players(app: &App) -> usize {
-    let mut n = 0;
-    for c in app.world().components().iter() {
-        // The complete name will be '[crate_name]::Player'
-        if c.name().contains("Player") {
-            n += 1;
-        }
-    }
-    n
+fn count_n_players(app: &mut App) -> usize {
+    let mut query = app.world_mut().query::<&Player>();
+    return query.iter(app.world_mut()).len();
 }
 
 #[cfg(test)]
@@ -37,22 +31,22 @@ mod tests {
 
     #[test]
     fn test_empty_app_has_no_players() {
-        let app = App::new();
-        assert_eq!(count_n_players(&app), 0);
+        let mut app = App::new();
+        assert_eq!(count_n_players(&mut app), 0);
     }
 
     #[test]
     fn test_add_player_adds_a_player() {
         let mut app = App::new();
-        assert_eq!(count_n_players(&app), 0);
+        assert_eq!(count_n_players(&mut app), 0);
         app.add_systems(Startup, add_player);
         app.update();
-        assert_eq!(count_n_players(&app), 1);
+        assert_eq!(count_n_players(&mut app), 1);
     }
 
     #[test]
     fn test_create_app_has_a_player() {
-        let app = create_app();
-        assert_eq!(count_n_players(&app), 1);
+        let mut app = create_app();
+        assert_eq!(count_n_players(&mut app), 1);
     }
 }
