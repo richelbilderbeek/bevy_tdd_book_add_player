@@ -6,7 +6,6 @@ pub struct Player;
 pub fn create_app() -> App {
     let mut app = App::new();
     app.add_systems(Startup, add_player);
-    app.update();
     app
 }
 
@@ -27,6 +26,7 @@ mod tests {
     #[test]
     fn test_empty_app_has_no_players() {
         let mut app = App::new();
+        app.update();
         assert_eq!(count_n_players(&mut app), 0);
     }
 
@@ -38,6 +38,7 @@ mod tests {
     #[test]
     fn test_create_app_has_a_player() {
         let mut app = create_app();
+        app.update();
         assert_eq!(count_n_players(&mut app), 1);
     }
 }
