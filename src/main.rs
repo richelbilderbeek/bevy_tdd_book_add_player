@@ -1,5 +1,5 @@
-use bevy::prelude::*;
 use crate::app::create_app;
+use bevy::prelude::*;
 mod app;
 
 fn main() {
