@@ -5,18 +5,14 @@ pub struct Player;
 
 pub fn create_app() -> App {
     let mut app = App::new();
-    //app.add_systems(Startup, add_player);
-    app.add_systems(Startup, |mut commands: Commands| {
-        commands.spawn(Player);
-    });
+    app.add_systems(Startup, add_player);
     app.update();
     app
 }
-/*
 fn add_player(mut commands: Commands) {
     commands.spawn(Player);
 }
-*/
+
 #[cfg(test)]
 fn count_n_players(app: &mut App) -> usize {
     let mut query = app.world_mut().query::<&Player>();
