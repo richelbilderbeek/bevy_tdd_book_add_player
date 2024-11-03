@@ -16,7 +16,7 @@ fn add_player(mut commands: Commands) {
 #[cfg(test)]
 fn count_n_players(app: &mut App) -> usize {
     let mut query = app.world_mut().query::<&Player>();
-    return query.iter(app.world()).len();
+    query.iter(app.world()).len()
 }
 
 #[cfg(test)]
