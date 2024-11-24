@@ -19,6 +19,12 @@ fn count_n_players(app: &mut App) -> usize {
     query.iter(app.world()).len()
 }
 
+
+#[cfg(test)]
+fn is_bevy_component<T: Component>(_t: T) -> bool {
+    true
+}
+
 #[cfg(test)]
 mod tests {
     use super::*;
@@ -28,6 +34,21 @@ mod tests {
         let mut app = App::new();
         app.update();
         assert_eq!(count_n_players(&mut app), 0);
+    }
+
+    #[test]
+    fn test_player_class_exists() {
+        let player: Player;
+    }
+    #[test]
+    fn test_player_class_has_a_name() {
+        use std::any::type_name;
+        assert!(type_name::<Player>().contains("Player"));
+    }
+    #[test]
+    fn test_player_class_is_a_bevy_component() {
+        let player = Player;
+        assert!(is_bevy_component(player));
     }
 
     #[test]
