@@ -38,7 +38,7 @@ mod tests {
 
     #[test]
     fn test_player_class_exists() {
-        let player: Player;
+        let _player: Player;
     }
     #[test]
     fn test_player_class_has_a_name() {
